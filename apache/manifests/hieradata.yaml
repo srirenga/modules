@@ -1,0 +1,12 @@
+---
+user_name: 'dev'
+group_name: 'devgroup'
+user_id: 80
+group_id: 1500
+index_html: '/var/www/html/index.html'
+dir_html: '/var/www/html'
+user_home: '/web'
+package: 'httpd'
+service: 'httpd'
+mode: '0755'
+httpd_conf: '/etc/httpd/conf'

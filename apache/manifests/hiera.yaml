@@ -1,0 +1,7 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+  - hieradata
+:yaml:
+  :datadir:  /etc/puppet/modules/apache/manifests/
