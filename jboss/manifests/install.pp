@@ -9,7 +9,7 @@ class jboss::install (
     ensure => file,
     mode => '0777',
     #path => "${temp_dir}/${java}",
-    source => "puppet:///modules/jboss/${java}"
+    source => "puppet:///modules/jboss/jdk-10.0.2_linux-x64_bin.rpm"
   }
   exec { 'install java JDK':
     command => "rpm -i ${java}",
