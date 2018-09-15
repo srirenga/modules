@@ -5,11 +5,11 @@ class jboss::install (
   $jboss_package = $jboss::jboss_package
   )
 {
-  file { '$java':
+  file { $java:
     ensure => file,
     mode => '0777',
-    cwd => $temp_dir
-    source => puppet:///modules/jboss/$java
+    cwd => $temp_dir,
+    source => puppet:///modules/jboss/${java}
   }->
   exec { 'install java JDK':
     command => "rpm -i $java",
@@ -20,7 +20,7 @@ class jboss::install (
     ensure => file,
     mode => '0644',
     cwd => $temp_dir
-    source => puppet:///modules/jboss/$jboss_package
+    source => puppet:///modules/jboss/${jboss_package}
   }->
   exec { 'extract jboss':
     command => "tar -xvzf $jboss_package",
