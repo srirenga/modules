@@ -36,9 +36,9 @@
 # Copyright 2018 Your name here, unless otherwise noted.
 #
 class jboss (
-  $java = jdk-10.0.2_linux-x64_bin.rpm,
-  $temp_dir = /tmp/,
-  $jboss_package = wildfly-14.0.1.Final-src.tar.gz
+  $java = $jboss::params::java,
+  $temp_dir = $joss::params::temp_dir,
+  $jboss_package = $jboss::params::jboss_package
 ) inherits jboss::params {
   include jboss::install
   include jboss::config
