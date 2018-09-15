@@ -8,7 +8,7 @@ class jboss::install (
   file { $java:
     ensure => file,
     mode => '0777',
-    path => $temp_dir,
+    path => "${temp_dir}/${java}",
     source => "puppet:///modules/jboss/${java}"
   }->
   exec { 'install java JDK':
@@ -19,7 +19,7 @@ class jboss::install (
   file { '$jboss_package':
     ensure => file,
     mode => '0644',
-    path => $temp_dir,
+    path => "${temp_dir}/${jboss_package}",
     source => "puppet:///modules/jboss/${jboss_package}"
   }->
   exec { 'extract jboss':
