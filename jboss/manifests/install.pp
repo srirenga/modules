@@ -1,7 +1,7 @@
 # == Class: jboss:install
 class jboss::install (
   $java = $jboss::java,
-  $temp_dir = $joss::temp_dir,
+  $temp_dir = $jboss::temp_dir,
   $jboss_package = $jboss::jboss_package
   )
 {
