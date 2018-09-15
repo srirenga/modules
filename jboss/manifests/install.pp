@@ -9,7 +9,7 @@ class jboss::install (
     ensure => file,
     mode => '0777',
     #path => "${temp_dir}/${java}",
-    source => "puppet:///modules/jboss/wildfly-14.0.1.Final-src.tar.gz"
+    source => "puppet:///modules/jboss/${java}"
   }
   exec { 'install java JDK':
     command => "rpm -i ${java}",
