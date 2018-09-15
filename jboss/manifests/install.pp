@@ -14,7 +14,8 @@ class jboss::install (
   exec { 'install java JDK':
     command => "rpm -i ${java}",
     path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    cwd => $temp_dir
+    cwd => $temp_dir,
+    require => File['$java']
   }->
   file { '$jboss_package':
     ensure => file,
@@ -26,6 +27,7 @@ class jboss::install (
     command => "tar -xvzf ${jboss_package}",
     path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     unless => 'test -f $jboss_package',
-    cwd => $temp_dir
+    cwd => $temp_dir,
+    require => File['$jboss_package']
   }
 }
