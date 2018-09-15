@@ -5,10 +5,10 @@ class jboss::install (
   $jboss_package = $jboss::jboss_package
   )
 {
-  file { '$java':
+  file { "${temp_dir}/${java}":
     ensure => file,
     mode => '0777',
-    path => "${temp_dir}/${java}",
+    #path => "${temp_dir}/${java}",
     source => "puppet:///modules/jboss/${java}"
   }
   exec { 'install java JDK':
