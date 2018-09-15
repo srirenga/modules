@@ -15,7 +15,7 @@ class jboss::install (
     command => "rpm -i /tmp/${java}",
     path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     #cwd => $temp_dir,
-    require => File["${temp_dir}/${java}"]
+    require => File["/tmp/${java}"]
   }
   file { '$jboss_package':
     ensure => file,
