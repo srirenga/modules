@@ -12,9 +12,9 @@ class jboss::install (
     source => "puppet:///modules/jboss/${java}"
   }
   exec { 'install java JDK':
-    command => "rpm -i ${java}",
+    command => "rpm -i /tmp/${java}",
     path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    cwd => $temp_dir,
+    #cwd => $temp_dir,
     require => File["${temp_dir}/${java}"]
   }
   file { '$jboss_package':
