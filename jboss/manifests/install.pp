@@ -4,18 +4,21 @@ class jboss::install (
   $temp_dir = $jboss::temp_dir,
   $jboss_package = $jboss::jboss_package
   )
-{
-  file { "/tmp/${java}":
-    ensure => file,
-    mode => '0777',
-    #path => "${temp_dir}/${java}",
-    source => "puppet:///modules/jboss/${java}"
-  }
-  exec { 'install java JDK':
-    command => "rpm -i /tmp/${java}",
-    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    #cwd => $temp_dir,
-    require => File["/tmp/${java}"]
+#{
+#  file { "/tmp/${java}":
+#    ensure => file,
+#    mode => '0777',
+#    #path => "${temp_dir}/${java}",
+#    source => "puppet:///modules/jboss/${java}"
+#  }
+#  exec { 'install java JDK':
+#    command => "rpm -i /tmp/${java}",
+#    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+#    #cwd => $temp_dir,
+#    require => File["/tmp/${java}"]
+package { 'java':
+  ensure => installed,
+}
   }
   file { '$jboss_package':
     ensure => file,
