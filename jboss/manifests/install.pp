@@ -19,7 +19,6 @@ class jboss::install (
 package { 'java':
   ensure => installed,
 }
-  }
   file { '$jboss_package':
     ensure => file,
     mode => '0644',
