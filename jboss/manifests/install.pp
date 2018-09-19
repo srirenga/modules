@@ -17,7 +17,7 @@ class jboss::install (
 #    #cwd => $temp_dir,
 #    require => File["/tmp/${java}"]
 package { 'java':
-  ensure => installed,
+  ensure => present,
 }
   file { '$jboss_package':
     ensure => file,
