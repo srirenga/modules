@@ -4,7 +4,7 @@ class jboss::install (
   $temp_dir = $jboss::temp_dir,
   $jboss_package = $jboss::jboss_package
   )
-#{
+{
 #  file { "/tmp/${java}":
 #    ensure => file,
 #    mode => '0777',
