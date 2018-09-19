@@ -16,7 +16,7 @@ class jboss::install (
 #    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
 #    #cwd => $temp_dir,
 #    require => File["/tmp/${java}"]
-package { 'java':
+package { 'java-1.8.0-openjdk':
   ensure => present,
 }
   file { '$jboss_package':
