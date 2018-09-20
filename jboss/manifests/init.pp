@@ -41,5 +41,5 @@ class jboss (
   $jboss_package = $jboss::params::jboss_package
 ) inherits jboss::params {
   include jboss::install
-  include jboss::config
+#  include jboss::config
 }
