@@ -16,20 +16,25 @@ class jboss::install (
 #    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
 #    #cwd => $temp_dir,
 #    require => File["/tmp/${java}"]
-package { 'java-1.8.0-openjdk':
+package { 'default-jdk':
   ensure => present,
 }
-  file { '$jboss_package':
-    ensure => file,
-    mode => '0644',
-    path => "${temp_dir}/${jboss_package}",
-    source => "puppet:///modules/jboss/${jboss_package}"
-  }
-  exec { 'extract jboss':
-    command => "tar -xvzf ${jboss_package}",
-    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    unless => 'test -f $jboss_package',
-    cwd => $temp_dir,
-    require => File['$jboss_package']
-  }
+#  file { '$jboss_package':
+#    ensure => file,
+#    mode => '0644',
+#    source => "puppet:///modules/jboss/${jboss_package}"
+#  }
+exec { "Download Jboos":
+  command => 'wget http://download.jboss.org/wildfly/14.0.0.Final/wildfly-14.0.0.Final.zip',
+  path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+  #refreshonly => true,
+  cwd     => '/tmp',
+  creates => '/tmp/wildfly-14.0.1.Final.zip'
+}
+#  exec { 'extract jboss':
+#    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+#    unless => 'test -f $jboss_package',
+#    cwd => $temp_dir,
+#    require => File['$jboss_package']
+#  }
 }
