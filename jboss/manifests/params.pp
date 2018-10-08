@@ -1,7 +1,8 @@
 # == Class: jboss::params
 #
 class jboss::params {
-  $java = 'jdk-10.0.2_linux-x64_bin.rpm'
+  $java = 'default-jdk'
   $temp_dir = '/tmp/'
-  $jboss_package = 'http://download.jboss.org/wildfly/14.0.0.Final/wildfly-14.0.0.Final.zip'
+  $jboss_package = 'wildfly-14.0.1.Final.zip'
+  $jboss_url = 'http://download.jboss.org/wildfly/14.0.1.Final/wildfly-14.0.1.Final.zip'
 }

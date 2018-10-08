@@ -2,7 +2,8 @@
 class jboss::install (
   $java = $jboss::java,
   $temp_dir = $jboss::temp_dir,
-  $jboss_package = $jboss::jboss_package
+  $jboss_package = $jboss::jboss_package,
+  $jboss_url = $jboss::jboss_url
   )
 {
 #  file { "/tmp/${java}":
@@ -16,7 +17,7 @@ class jboss::install (
 #    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
 #    #cwd => $temp_dir,
 #    require => File["/tmp/${java}"]
-package { 'default-jdk':
+package { '$java':
   ensure => present,
 }
 #  file { '$jboss_package':
@@ -25,11 +26,11 @@ package { 'default-jdk':
 #    source => "puppet:///modules/jboss/${jboss_package}"
 #  }
 exec { "Download Jboos":
-  command => 'wget http://download.jboss.org/wildfly/14.0.0.Final/wildfly-14.0.0.Final.zip',
+  command => "wget ${jboss_url}",
   path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
   #refreshonly => true,
-  cwd     => '/tmp',
-  creates => '/tmp/wildfly-14.0.1.Final.zip'
+  cwd     => $temp_dir,
+  creates => "${temp_dir}/wildfly-14.0.1.Final.zip"
 }
 #  exec { 'extract jboss':
 #    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',

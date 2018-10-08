@@ -38,7 +38,8 @@
 class jboss (
   $java = $jboss::params::java,
   $temp_dir = $joss::params::temp_dir,
-  $jboss_package = $jboss::params::jboss_package
+  $jboss_package = $jboss::params::jboss_package,
+  $jboss_url = $jboss::params::jboss_url
 ) inherits jboss::params {
   include jboss::install
 #  include jboss::config
