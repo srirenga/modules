@@ -17,7 +17,7 @@ class jboss::install (
 #    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
 #    #cwd => $temp_dir,
 #    require => File["/tmp/${java}"]
-package { '$java':
+package { $java:
   ensure => present,
 }
 #  file { '$jboss_package':
@@ -25,17 +25,18 @@ package { '$java':
 #    mode => '0644',
 #    source => "puppet:///modules/jboss/${jboss_package}"
 #  }
-exec { "Download Jboos":
+exec { 'Download Jboos':
   command => "wget ${jboss_url}",
-  path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+  path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
   #refreshonly => true,
-  cwd     => $temp_dir,
-  creates => "${temp_dir}/wildfly-14.0.1.Final.zip"
+  cwd     => '/home/sri/Documents/',
+  creates => "/home/sri/Documents/${jboss_package}"
 }
-#  exec { 'extract jboss':
-#    path => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-#    unless => 'test -f $jboss_package',
-#    cwd => $temp_dir,
-#    require => File['$jboss_package']
-#  }
+exec { 'extract jboss':
+  path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+  unless  => 'test -d wildfly-14.0.1.Final',
+  cwd     => '/home/sri/Documents/',
+  require => Exec['Download Jboos'],
+  command => "unzip ${jboss_package}"
+}
 }
